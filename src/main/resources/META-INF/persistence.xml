@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+
+    <!-- JPA Unit 설정 -->
+    <persistence-unit name="myunit">
+        <properties>
+
+            <!-- 필수 속성 -->
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/web4"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+
+            <!-- 옵션 -->
+            <!-- 쿼리 날릴 때, sql 쿼리를 콘솔에 출력 여부 -->
+            <property name="hibernate.show_sql" value="true"/>
+
+            <!-- 출력할 쿼리를 한 줄이 아닌, 이쁘게 포맷팅하여 보여줄 것인지 -->
+            <property name="hibernate.format_sql" value="true"/>
+
+            <!-- sql 주석을 표기할 것인지 -->
+            <property name="hibernate.use_sql_comments" value="true"/>
+
+            <!-- 어플리케이션 실행 시 실제 DB에 들어있는 기존 테이블과 JPA에서 사용되는 테이블이 중복되는 경우 어떻게 할 지
+                create : drop 한 후 다시 create
+                update : DB의 데이터는 유지 한 채, 상이한 컬럼은 alter 시킴 (JPA에서 선언한 테이블 모양으로)
+                create-drop : create 설정 동일. JPA 애플리케이션이 종료되면 해당 테이블을 drop
+                validate : update 와 동일. 단, 상이한 컬럼이 있다면 익셉션 발생 (원본 DB 형태를 못 바꾸게)
+             -->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+
+        </properties>
+    </persistence-unit>
+
+</persistence>
